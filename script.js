@@ -74,8 +74,40 @@ menu?.addEventListener('click',()=>{
 });
 sidebarClose?.addEventListener('click',closeNav);
 sidebarBackdrop?.addEventListener('click',closeNav);
-$$('.sidebar-drawer a').forEach(a=>a.addEventListener('click',closeNav));
-$$('#desktopNav a').forEach(a=>a.addEventListener('click',closeNav));
+function scrollToTarget(targetId){
+  const el = document.getElementById(targetId);
+  if(!el) return;
+  const navHeight = 75;
+  const targetY = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+  window.scrollTo({
+    top: Math.max(0, targetY),
+    behavior: 'smooth'
+  });
+}
+
+$$('.sidebar-drawer a, #desktopNav a').forEach(a=>{
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const targetId = href.slice(1);
+      if (targetId) {
+        e.preventDefault();
+        const wasOpen = document.body.classList.contains('nav-open');
+        closeNav();
+        // Allow sidebar CSS transition/reflow before measuring or scrolling
+        if (wasOpen) {
+          setTimeout(() => {
+            scrollToTarget(targetId);
+          }, 150);
+        } else {
+          scrollToTarget(targetId);
+        }
+      }
+    } else {
+      closeNav();
+    }
+  });
+});
 
 window.addEventListener('keydown',e=>{
   if(e.key==='Escape' && document.body.classList.contains('nav-open')){
