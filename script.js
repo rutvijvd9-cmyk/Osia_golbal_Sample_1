@@ -31,12 +31,14 @@ $$('[data-count]').forEach(el=>{
   io.observe(el);
 });
 
+// Tabs logic (if tab buttons are present)
 $$('.tab').forEach(btn=>{
   btn.addEventListener('click',()=>{
     $$('.tab').forEach(b=>b.classList.remove('active'));
     $$('.tab-panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
-    $('#'+btn.dataset.tab).classList.add('active');
+    const target = $('#'+btn.dataset.tab);
+    if(target) target.classList.add('active');
   });
 });
 
