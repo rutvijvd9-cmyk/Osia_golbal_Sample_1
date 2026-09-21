@@ -46,9 +46,33 @@ $$('.industry-card').forEach(card=>{
   card.style.setProperty('--card-image',`url("${card.dataset.image}")`);
 });
 
-const nav=$('.nav'), menu=$('.menu-toggle');
-menu?.addEventListener('click',()=>nav.classList.toggle('open'));
-$$('nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const nav=$('.nav'),
+      menu=$('.menu-toggle'),
+      navBackdrop=$('.nav-backdrop'),
+      sidebarClose=$('.sidebar-close');
+
+function openNav(){
+  nav?.classList.add('open');
+  menu?.setAttribute('aria-expanded','true');
+  document.body.style.overflow='hidden';
+}
+
+function closeNav(){
+  nav?.classList.remove('open');
+  menu?.setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+
+menu?.addEventListener('click',()=>nav?.classList.contains('open')?closeNav():openNav());
+sidebarClose?.addEventListener('click',closeNav);
+navBackdrop?.addEventListener('click',closeNav);
+$$('nav a').forEach(a=>a.addEventListener('click',closeNav));
+
+window.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && nav?.classList.contains('open')){
+    closeNav();
+  }
+});
 
 $$('.tilt').forEach(el=>{
   el.addEventListener('pointermove',e=>{
