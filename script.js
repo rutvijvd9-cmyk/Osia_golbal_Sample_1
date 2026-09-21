@@ -57,3 +57,67 @@ $$('.tilt').forEach(el=>{
   });
   el.addEventListener('pointerleave',()=>el.style.transform='');
 });
+
+// Industry Cards Modal Handler
+const modal=$('#industryModal'),
+      modalTitle=$('#modalTitle'),
+      modalDesc=$('#modalDesc'),
+      modalBody=$('#modalBody'),
+      modalClose=$('.modal-close'),
+      modalDismiss=$('.modal-dismiss-btn'),
+      modalInquiry=$('.modal-inquiry-btn');
+
+function openIndustryModal(card){
+  const tabId=card.dataset.tab;
+  const h3=card.querySelector('h3')?.textContent || 'Industry Details';
+  const desc=card.querySelector('p')?.textContent || '';
+  const num=card.querySelector('.card-num')?.textContent || '01';
+
+  modalTitle.textContent=h3;
+  modalDesc.textContent=desc;
+  $('#modalBadge').textContent=`CATEGORY ${num} · PRODUCT DETAILS`;
+
+  const sourcePanel=$('#'+tabId);
+  if(sourcePanel){
+    modalBody.innerHTML=sourcePanel.innerHTML;
+  } else {
+    modalBody.innerHTML=`<p>Detailed product specifications available upon inquiry.</p>`;
+  }
+
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+
+function closeIndustryModal(){
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+
+$$('.industry-card').forEach(card=>{
+  card.addEventListener('click',()=>openIndustryModal(card));
+  card.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){
+      e.preventDefault();
+      openIndustryModal(card);
+    }
+  });
+});
+
+modalClose?.addEventListener('click',closeIndustryModal);
+modalDismiss?.addEventListener('click',closeIndustryModal);
+modalInquiry?.addEventListener('click',()=>{
+  closeIndustryModal();
+});
+
+modal?.addEventListener('click',e=>{
+  if(e.target===modal) closeIndustryModal();
+});
+
+window.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && modal.classList.contains('active')){
+    closeIndustryModal();
+  }
+});
+
