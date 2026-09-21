@@ -62,8 +62,11 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-left: 0;
+  transition: margin-left 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              width 0.38s cubic-bezier(0.16, 1, 0.3, 1);
   background: #f8f8f6;
+  box-sizing: border-box;
 }
 
 .brand-logo {
@@ -96,6 +99,8 @@
     display: none !important;
   }
   .site-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
     transform: none !important;
   }
   #desktopNav {
@@ -107,23 +112,33 @@
 
 @media (max-width: 760px) {
   :root {
-    --sidebar-width: 280px;
+    --sidebar-width: 270px;
   }
-  @media (max-width: 360px) {
+  @media (max-width: 500px) {
     :root {
-      --sidebar-width: 250px;
+      --sidebar-width: 240px;
+    }
+  }
+  @media (max-width: 380px) {
+    :root {
+      --sidebar-width: 210px;
     }
   }
 
-  /* When menu is open: lock scroll and push entire site to the right */
+  /* When menu is open: keep vertical scroll enabled */
   body.nav-open {
-    overflow: hidden;
-  }
-  body.nav-open .site-wrapper {
-    transform: translateX(var(--sidebar-width));
+    overflow-x: hidden;
   }
 
-  /* Mobile Header: Sandwich Button on Left, Logo in the Middle */
+  /* The site moves to the right AND compresses: right side stays fixed at right edge! */
+  body.nav-open .site-wrapper {
+    margin-left: var(--sidebar-width) !important;
+    width: calc(100% - var(--sidebar-width)) !important;
+    max-width: calc(100% - var(--sidebar-width)) !important;
+    transform: none !important;
+  }
+
+  /* Header transitions with the compressed site */
   .nav {
     height: 70px;
     padding: 0 16px;
@@ -134,6 +149,16 @@
     top: 0;
     left: 0;
     right: 0;
+    width: 100%;
+    transition: left 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                width 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+  }
+
+  body.nav-open .nav {
+    left: var(--sidebar-width) !important;
+    right: 0 !important;
+    width: calc(100% - var(--sidebar-width)) !important;
   }
 
   .menu-toggle {
@@ -197,8 +222,8 @@
     z-index: 999 !important;
     transform: translateX(-100%) !important;
     transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-shadow: 15px 0 45px rgba(0, 0, 0, 0.22) !important;
-    padding: 22px 20px 24px !important;
+    box-shadow: 10px 0 35px rgba(0, 0, 0, 0.16) !important;
+    padding: 22px 18px 24px !important;
     overflow-y: auto !important;
     border-right: 1px solid rgba(16, 24, 43, 0.08) !important;
     box-sizing: border-box !important;
@@ -208,28 +233,28 @@
     transform: translateX(0) !important;
   }
 
-  /* Backdrop over the shifted site (Strictly NO blur) */
+  /* No blocking backdrop so site remains directly interactive and scrollable */
   .sidebar-backdrop {
-    display: block !important;
-    position: fixed !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: var(--sidebar-width) !important;
-    right: 0 !important;
-    background: rgba(7, 14, 30, 0.08) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    filter: none !important;
-    z-index: 998 !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transition: opacity 0.35s ease !important;
-    cursor: pointer !important;
+    display: none !important;
   }
 
-  body.nav-open .sidebar-backdrop {
-    opacity: 1 !important;
-    pointer-events: auto !important;
+  /* Content typography scaling when compressed */
+  body.nav-open .hero h1 {
+    font-size: clamp(28px, 6vw, 44px);
+    line-height: 1;
+  }
+  body.nav-open .hero-lead {
+    font-size: 14px;
+    margin: 18px 0 24px;
+  }
+  body.nav-open .hero-content {
+    padding: 100px 5vw 80px;
+  }
+  body.nav-open .section {
+    padding: 65px 5vw;
+  }
+  body.nav-open .about-lead {
+    font-size: 15px;
   }
 
   /* Sidebar Header & Brand */

@@ -54,12 +54,14 @@ const menu=$('.menu-toggle'),
 function openNav(){
   document.body.classList.add('nav-open');
   menu?.setAttribute('aria-expanded','true');
+  if(menu) menu.textContent = '✕';
   sidebarDrawer?.setAttribute('aria-hidden','false');
 }
 
 function closeNav(){
   document.body.classList.remove('nav-open');
   menu?.setAttribute('aria-expanded','false');
+  if(menu) menu.textContent = '☰';
   sidebarDrawer?.setAttribute('aria-hidden','true');
 }
 
