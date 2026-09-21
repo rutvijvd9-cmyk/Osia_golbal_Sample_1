@@ -66,6 +66,22 @@
   background: #f8f8f6;
 }
 
+.brand-logo {
+  height: 48px;
+  width: auto;
+  max-width: 190px;
+  object-fit: contain;
+  display: block;
+}
+
+.sidebar-logo {
+  height: 42px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}
+
 .sidebar-drawer,
 .sidebar-backdrop {
   display: none;
@@ -149,16 +165,17 @@
     transform: translateX(-50%) !important;
     display: flex !important;
     align-items: center !important;
-    gap: 10px !important;
+    justify-content: center !important;
     margin: 0 !important;
     text-decoration: none !important;
   }
-  .brand-copy strong {
-    font-size: 14px;
+  .brand-logo {
+    height: 40px;
+    max-width: 150px;
   }
-  .brand-copy small {
-    font-size: 7.5px;
-    letter-spacing: 0.1em;
+  .sidebar-logo {
+    height: 38px;
+    max-width: 140px;
   }
 
   #desktopNav {
@@ -191,7 +208,7 @@
     transform: translateX(0) !important;
   }
 
-  /* Semi-transparent Backdrop over the shifted site */
+  /* Backdrop over the shifted site (Strictly NO blur) */
   .sidebar-backdrop {
     display: block !important;
     position: fixed !important;
@@ -199,9 +216,10 @@
     bottom: 0 !important;
     left: var(--sidebar-width) !important;
     right: 0 !important;
-    background: rgba(7, 14, 30, 0.36) !important;
-    backdrop-filter: blur(3px) !important;
-    -webkit-backdrop-filter: blur(3px) !important;
+    background: rgba(7, 14, 30, 0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
     z-index: 998 !important;
     opacity: 0 !important;
     pointer-events: none !important;
