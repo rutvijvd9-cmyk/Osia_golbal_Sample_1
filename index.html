@@ -11,42 +11,58 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="progress"></div>
-
-  <header class="nav" id="top">
-    <a class="brand" href="#home" aria-label="OSIA GLOBAL home">
-      <span class="brand-mark"><span>O</span><b>G</b></span>
-      <span class="brand-copy">
-        <strong>OSIA GLOBAL</strong>
-        <small>(HK) LTD. · CONNECTING THE WORLD</small>
-      </span>
-    </a>
-    <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mainNav">☰</button>
-    <div class="nav-backdrop" id="navBackdrop"></div>
-    <nav id="mainNav">
-      <div class="sidebar-top">
-        <div class="sidebar-brand">
-          <span class="brand-mark"><span>O</span><b>G</b></span>
-          <span class="brand-copy">
-            <strong>OSIA GLOBAL</strong>
-            <small>(HK) LTD.</small>
-          </span>
-        </div>
-        <button class="sidebar-close" aria-label="Close menu">&times;</button>
+  <!-- Off-canvas Mobile Push Sidebar Drawer -->
+  <aside class="sidebar-drawer" id="sidebarDrawer" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="sidebar-top">
+      <div class="sidebar-brand">
+        <span class="brand-mark"><span>O</span><b>G</b></span>
+        <span class="brand-copy">
+          <strong>OSIA GLOBAL</strong>
+          <small>(HK) LTD.</small>
+        </span>
       </div>
+      <button class="sidebar-close" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="sidebar-links">
       <a href="#about">About</a>
       <a href="#process">Process</a>
       <a href="#industries">Industries</a>
       <a href="#projects">Projects</a>
       <a href="#global">Global</a>
       <a class="nav-cta" href="#contact">Contact</a>
-      <div class="sidebar-footer">
-        <p class="sidebar-motto">CONNECTING THE WORLD</p>
-        <a href="mailto:business@osiaglobalhk.com" class="sidebar-contact-link">business@osiaglobalhk.com</a>
-        <a href="tel:+85227108200" class="sidebar-contact-link">+852 2710 8200</a>
-      </div>
-    </nav>
-  </header>
+    </div>
+    <div class="sidebar-footer">
+      <p class="sidebar-motto">CONNECTING THE WORLD</p>
+      <a href="mailto:business@osiaglobalhk.com" class="sidebar-contact-link">business@osiaglobalhk.com</a>
+      <a href="tel:+85227108200" class="sidebar-contact-link">+852 2710 8200</a>
+    </div>
+  </aside>
+
+  <!-- Backdrop overlay covering the shifted page on mobile -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+  <!-- Main Site Wrapper (moves to right when sidebar opens) -->
+  <div class="site-wrapper" id="siteWrapper">
+    <div class="progress"></div>
+
+    <header class="nav" id="top">
+      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebarDrawer">☰</button>
+      <a class="brand" href="#home" aria-label="OSIA GLOBAL home">
+        <span class="brand-mark"><span>O</span><b>G</b></span>
+        <span class="brand-copy">
+          <strong>OSIA GLOBAL</strong>
+          <small>(HK) LTD. · CONNECTING THE WORLD</small>
+        </span>
+      </a>
+      <nav id="desktopNav">
+        <a href="#about">About</a>
+        <a href="#process">Process</a>
+        <a href="#industries">Industries</a>
+        <a href="#projects">Projects</a>
+        <a href="#global">Global</a>
+        <a class="nav-cta" href="#contact">Contact</a>
+      </nav>
+    </header>
 
   <main>
     <section class="hero" id="home">
@@ -317,6 +333,7 @@
     <div><strong>OSIA GLOBAL (HK) LTD.</strong><span>CONNECTING THE WORLD</span></div>
     <div>business@osiaglobalhk.com · www.osiaglobalhk.com · +852 2710 8200</div>
   </footer>
+  </div><!-- /site-wrapper -->
 
   <!-- Industry Details Modal Dialog -->
   <div class="modal-backdrop" id="industryModal" aria-hidden="true" role="dialog" aria-modal="true">

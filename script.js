@@ -46,30 +46,37 @@ $$('.industry-card').forEach(card=>{
   card.style.setProperty('--card-image',`url("${card.dataset.image}")`);
 });
 
-const nav=$('.nav'),
-      menu=$('.menu-toggle'),
-      navBackdrop=$('.nav-backdrop'),
-      sidebarClose=$('.sidebar-close');
+const menu=$('.menu-toggle'),
+      sidebarDrawer=$('#sidebarDrawer'),
+      sidebarClose=$('.sidebar-close'),
+      sidebarBackdrop=$('#sidebarBackdrop');
 
 function openNav(){
-  nav?.classList.add('open');
+  document.body.classList.add('nav-open');
   menu?.setAttribute('aria-expanded','true');
-  document.body.style.overflow='hidden';
+  sidebarDrawer?.setAttribute('aria-hidden','false');
 }
 
 function closeNav(){
-  nav?.classList.remove('open');
+  document.body.classList.remove('nav-open');
   menu?.setAttribute('aria-expanded','false');
-  document.body.style.overflow='';
+  sidebarDrawer?.setAttribute('aria-hidden','true');
 }
 
-menu?.addEventListener('click',()=>nav?.classList.contains('open')?closeNav():openNav());
+menu?.addEventListener('click',()=>{
+  if(document.body.classList.contains('nav-open')){
+    closeNav();
+  } else {
+    openNav();
+  }
+});
 sidebarClose?.addEventListener('click',closeNav);
-navBackdrop?.addEventListener('click',closeNav);
-$$('nav a').forEach(a=>a.addEventListener('click',closeNav));
+sidebarBackdrop?.addEventListener('click',closeNav);
+$$('.sidebar-drawer a').forEach(a=>a.addEventListener('click',closeNav));
+$$('#desktopNav a').forEach(a=>a.addEventListener('click',closeNav));
 
 window.addEventListener('keydown',e=>{
-  if(e.key==='Escape' && nav?.classList.contains('open')){
+  if(e.key==='Escape' && document.body.classList.contains('nav-open')){
     closeNav();
   }
 });
