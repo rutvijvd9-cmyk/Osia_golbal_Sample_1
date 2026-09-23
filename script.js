@@ -257,9 +257,9 @@ contactForm?.addEventListener('submit', e => {
   }
 });
 
-// Automatic Hero Background Slider (2 seconds interval)
-(function initHeroSlider() {
-  const slides = $$('.hero-slide');
+// Automatic Background Slider (Hero & Contact sections, 2s interval)
+function initAutoSlider(slideSelector) {
+  const slides = $$(slideSelector);
   if (!slides || slides.length < 2) return;
   let currentIndex = 0;
   setInterval(() => {
@@ -267,4 +267,6 @@ contactForm?.addEventListener('submit', e => {
     currentIndex = (currentIndex + 1) % slides.length;
     slides[currentIndex].classList.add('active');
   }, 2000);
-})();
+}
+initAutoSlider('.hero-slide');
+initAutoSlider('.contact-slide');
