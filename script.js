@@ -210,16 +210,32 @@ function openContactModal() {
   document.body.style.overflow = 'hidden';
 }
 
+function resetContactFormStatus() {
+  if (formStatus) {
+    formStatus.className = 'form-status';
+    formStatus.textContent = '';
+  }
+}
+
 function closeContactModal() {
   if (!contactModal) return;
   contactModal.classList.remove('active');
   contactModal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  resetContactFormStatus();
 }
+
+// Clear message when visitor returns to website window/tab after leaving or closing their mail client
+window.addEventListener('focus', () => {
+  if (formStatus && formStatus.textContent) {
+    resetContactFormStatus();
+  }
+});
 
 $$('.open-contact-btn').forEach(btn => {
   btn.addEventListener('click', e => {
     e.preventDefault();
+    resetContactFormStatus();
     openContactModal();
   });
 });
@@ -235,6 +251,8 @@ window.addEventListener('keydown', e => {
     closeContactModal();
   }
 });
+
+let statusTimeout = null;
 
 contactForm?.addEventListener('submit', e => {
   e.preventDefault();
@@ -261,6 +279,15 @@ contactForm?.addEventListener('submit', e => {
     formStatus.className = 'form-status success';
     formStatus.textContent = 'Opening your email client to dispatch this query directly to business@osiaglobalhk.com...';
   }
+
+  // Reset form inputs after submitting
+  contactForm.reset();
+
+  // Auto-dismiss the status notification after 4 seconds
+  if (statusTimeout) clearTimeout(statusTimeout);
+  statusTimeout = setTimeout(() => {
+    resetContactFormStatus();
+  }, 4000);
 });
 
 // Automatic Background Slider (Hero & Contact sections, 2s interval)
