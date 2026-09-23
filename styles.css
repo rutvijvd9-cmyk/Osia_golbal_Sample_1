@@ -452,3 +452,37 @@
     gap: 12px;
   }
 }
+
+/* Hero Title to Action Buttons Spacing */
+.hero h1 {
+  margin: 0 0 45px 0 !important;
+}
+.hero-actions {
+  margin-top: 15px !important;
+  display: flex !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+}
+
+/* Background Auto-Changing Slideshow */
+.hero-slider {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.04);
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 6s linear;
+  will-change: opacity, transform;
+}
+.hero-slide.active {
+  opacity: 1;
+  transform: scale(1.08);
+  z-index: 1;
+}

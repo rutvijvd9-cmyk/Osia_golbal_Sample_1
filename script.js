@@ -256,3 +256,15 @@ contactForm?.addEventListener('submit', e => {
     formStatus.textContent = 'Opening your email client to dispatch this query directly to business@osiaglobalhk.com...';
   }
 });
+
+// Automatic Hero Background Slider (2 seconds interval)
+(function initHeroSlider() {
+  const slides = $$('.hero-slide');
+  if (!slides || slides.length < 2) return;
+  let currentIndex = 0;
+  setInterval(() => {
+    slides[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].classList.add('active');
+  }, 2000);
+})();
