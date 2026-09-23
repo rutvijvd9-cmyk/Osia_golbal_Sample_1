@@ -486,3 +486,20 @@
   transform: scale(1.08);
   z-index: 1;
 }
+
+/* Remove extra blank space between Process and Global Reach sections */
+.process-section {
+  padding-bottom: 40px !important;
+}
+.global-section {
+  padding-top: 40px !important;
+}
+@media (max-width: 760px) {
+  .process-section {
+    padding-bottom: 30px !important;
+  }
+  .global-section {
+    padding-top: 30px !important;
+  }
+}
+
