@@ -188,3 +188,71 @@ window.addEventListener('keydown',e=>{
   }
 });
 
+
+// Contact Us Popup Modal Handler
+const contactModal = $('#contactModal'),
+      contactModalClose = $('#contactModalClose'),
+      contactForm = $('#contactQueryForm'),
+      formStatus = $('#formStatus');
+
+function openContactModal() {
+  if (!contactModal) return;
+  closeIndustryModal();
+  if (typeof closeNav === 'function') closeNav();
+  contactModal.classList.add('active');
+  contactModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeContactModal() {
+  if (!contactModal) return;
+  contactModal.classList.remove('active');
+  contactModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+$$('.open-contact-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    openContactModal();
+  });
+});
+
+contactModalClose?.addEventListener('click', closeContactModal);
+
+contactModal?.addEventListener('click', e => {
+  if (e.target === contactModal) closeContactModal();
+});
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && contactModal?.classList.contains('active')) {
+    closeContactModal();
+  }
+});
+
+contactForm?.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('#queryName')?.value.trim() || '';
+  const email = $('#queryEmail')?.value.trim() || '';
+  const company = $('#queryCompany')?.value.trim() || '';
+  const phone = $('#queryPhone')?.value.trim() || '';
+  const subject = $('#querySubject')?.value.trim() || 'General Business Inquiry';
+  const message = $('#queryMessage')?.value.trim() || '';
+
+  const emailSubject = encodeURIComponent(`[OSIA Website Inquiry] ${subject}`);
+  const emailBody = encodeURIComponent(
+    `Name: ${name}\n` +
+    `Email: ${email}\n` +
+    (company ? `Company: ${company}\n` : '') +
+    (phone ? `Phone: ${phone}\n` : '') +
+    `\nRequirement / Message:\n${message}\n`
+  );
+
+  // Trigger default email client addressed to business@osiaglobalhk.com
+  window.location.href = `mailto:business@osiaglobalhk.com?subject=${emailSubject}&body=${emailBody}`;
+
+  if (formStatus) {
+    formStatus.className = 'form-status success';
+    formStatus.textContent = 'Opening your email client to dispatch this query directly to business@osiaglobalhk.com...';
+  }
+});

@@ -22,9 +22,7 @@
     <div class="sidebar-links">
       <a href="#about">About</a>
       <a href="#process">Process</a>
-      <a href="#industries">Industries</a>
-      <a href="#global">Global</a>
-      <a class="nav-cta" href="#contact">Contact</a>
+      <a class="nav-cta open-contact-btn" href="#contact">Contact Us</a>
     </div>
     <div class="sidebar-footer">
       <p class="sidebar-motto">CONNECTING THE WORLD</p>
@@ -48,9 +46,7 @@
       <nav id="desktopNav">
         <a href="#about">About</a>
         <a href="#process">Process</a>
-        <a href="#industries">Industries</a>
-        <a href="#global">Global</a>
-        <a class="nav-cta" href="#contact">Contact</a>
+        <a class="nav-cta open-contact-btn" href="#contact">Contact Us</a>
       </nav>
     </header>
 
@@ -63,7 +59,7 @@
         <h1>CONNECTING<br><span>THE WORLD</span></h1>
         <div class="hero-actions">
           <a class="btn primary" href="#industries">Explore Industries <span>↗</span></a>
-          <a class="btn ghost" href="#contact">Contact Us</a>
+          <a class="btn ghost open-contact-btn" href="#contact">Contact Us</a>
         </div>
       </div>
       <div class="hero-bottom">
@@ -328,8 +324,60 @@
         <!-- Content dynamically injected here -->
       </div>
       <div class="modal-footer">
-        <a href="#contact" class="btn primary modal-inquiry-btn">Inquire About These Products <span>↗</span></a>
+        <a href="#contact" class="btn primary modal-inquiry-btn open-contact-btn">Inquire About These Products <span>↗</span></a>
         <button type="button" class="btn ghost modal-dismiss-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Contact Us Modal Dialog -->
+  <div class="modal-backdrop" id="contactModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-box contact-modal-box">
+      <button class="modal-close" id="contactModalClose" aria-label="Close contact modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-badge">GET IN TOUCH</span>
+        <h2 class="modal-title">Contact Us</h2>
+        <p class="modal-desc">
+          Email: <a href="mailto:business@osiaglobalhk.com" class="contact-email-link"><strong>business@osiaglobalhk.com</strong></a>
+        </p>
+      </div>
+      <div class="modal-body contact-modal-body">
+        <p class="form-intro">Send us your inquiry and our sourcing team will respond promptly.</p>
+        <form class="contact-form" id="contactQueryForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="queryName">Your Name *</label>
+              <input type="text" id="queryName" name="name" required placeholder="Full Name" />
+            </div>
+            <div class="form-group">
+              <label for="queryEmail">Your Email *</label>
+              <input type="email" id="queryEmail" name="email" required placeholder="name@company.com" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="queryCompany">Company / Organization</label>
+              <input type="text" id="queryCompany" name="company" placeholder="Company Name" />
+            </div>
+            <div class="form-group">
+              <label for="queryPhone">Phone Number</label>
+              <input type="tel" id="queryPhone" name="phone" placeholder="+1 234 567 8900" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="querySubject">Subject / Industry Interest *</label>
+            <input type="text" id="querySubject" name="subject" required placeholder="e.g. Chemicals / Pharmaceuticals / Electricals Sourcing" />
+          </div>
+          <div class="form-group">
+            <label for="queryMessage">Message / Requirement Details *</label>
+            <textarea id="queryMessage" name="message" rows="4" required placeholder="Provide details about products, volume, specifications or target destination..."></textarea>
+          </div>
+          <div class="form-status" id="formStatus"></div>
+          <button type="submit" class="btn primary form-submit-btn">
+            Send Query to business@osiaglobalhk.com <span>↗</span>
+          </button>
+        </form>
       </div>
     </div>
   </div>
