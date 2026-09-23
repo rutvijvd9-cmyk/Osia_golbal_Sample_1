@@ -87,6 +87,12 @@ function scrollToTarget(targetId){
 
 $$('.sidebar-drawer a, #desktopNav a').forEach(a=>{
   a.addEventListener('click', e => {
+    // If it's a contact button, the modal handler handles it without scrolling
+    if (a.classList.contains('open-contact-btn')) {
+      e.preventDefault();
+      closeNav();
+      return;
+    }
     const href = a.getAttribute('href');
     if (href && href.startsWith('#')) {
       const targetId = href.slice(1);

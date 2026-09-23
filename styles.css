@@ -503,3 +503,30 @@
   }
 }
 
+/* Contact Brand Tag moved directly under website url */
+.contact-brand-tag {
+  margin-top: 28px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: rgba(8, 15, 33, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.contact-brand-tag strong {
+  color: #fff;
+  font: 800 13px/1.2 Manrope, sans-serif;
+  letter-spacing: 0.08em;
+}
+.contact-brand-tag span {
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  color: #aeb7c8;
+  font-weight: 700;
+}
+
+
