@@ -534,4 +534,16 @@
   font-weight: 700;
 }
 
+/* Locations Card Links */
+.locations article a {
+  color: #e12a20;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+.locations article a:hover {
+  text-decoration: underline;
+  color: #c82017;
+}
+
 
