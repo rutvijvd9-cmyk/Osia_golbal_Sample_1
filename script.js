@@ -77,7 +77,8 @@ sidebarBackdrop?.addEventListener('click',closeNav);
 function scrollToTarget(targetId){
   const el = document.getElementById(targetId);
   if(!el) return;
-  const navHeight = 75;
+  const nav = document.querySelector('.nav');
+  const navHeight = nav ? nav.offsetHeight : (window.innerWidth <= 760 ? 70 : 82);
   const targetY = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
   window.scrollTo({
     top: Math.max(0, targetY),

@@ -506,19 +506,25 @@
   z-index: 1;
 }
 
-/* Spacing between About Us, Process and Industries sections */
+/* Spacing and scroll positioning for About Us, Process and Industries sections */
 .about-section {
-  padding-bottom: 70px !important;
+  scroll-margin-top: 82px !important;
+  padding-top: 50px !important;
+  padding-bottom: 60px !important;
 }
 .process-section {
+  scroll-margin-top: 82px !important;
   padding-top: 50px !important;
   padding-bottom: 90px !important;
 }
 @media (max-width: 760px) {
   .about-section {
-    padding-bottom: 50px !important;
+    scroll-margin-top: 70px !important;
+    padding-top: 40px !important;
+    padding-bottom: 45px !important;
   }
   .process-section {
+    scroll-margin-top: 70px !important;
     padding-top: 40px !important;
     padding-bottom: 60px !important;
   }
