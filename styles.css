@@ -518,19 +518,21 @@
   z-index: 1;
 }
 
-/* Remove extra blank space between Process and Global Reach sections */
-.process-section {
-  padding-bottom: 40px !important;
+/* Spacing between About Us, Process and Industries sections */
+.about-section {
+  padding-bottom: 70px !important;
 }
-.global-section {
-  padding-top: 40px !important;
+.process-section {
+  padding-top: 50px !important;
+  padding-bottom: 90px !important;
 }
 @media (max-width: 760px) {
-  .process-section {
-    padding-bottom: 30px !important;
+  .about-section {
+    padding-bottom: 50px !important;
   }
-  .global-section {
-    padding-top: 30px !important;
+  .process-section {
+    padding-top: 40px !important;
+    padding-bottom: 60px !important;
   }
 }
 
