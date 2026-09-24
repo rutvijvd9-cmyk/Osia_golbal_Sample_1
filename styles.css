@@ -517,6 +517,20 @@
   padding-top: 50px !important;
   padding-bottom: 90px !important;
 }
+#industries {
+  scroll-margin-top: 82px !important;
+  padding-top: 45px !important;
+  padding-bottom: 80px !important;
+}
+#industries .section-head {
+  margin-bottom: 35px;
+}
+#industries .section-head .eyebrow {
+  margin-bottom: 14px;
+}
+#industries .section-head h2 {
+  margin-bottom: 18px;
+}
 @media (max-width: 760px) {
   .about-section {
     scroll-margin-top: 70px !important;
@@ -527,6 +541,14 @@
     scroll-margin-top: 70px !important;
     padding-top: 40px !important;
     padding-bottom: 60px !important;
+  }
+  #industries {
+    scroll-margin-top: 70px !important;
+    padding-top: 35px !important;
+    padding-bottom: 60px !important;
+  }
+  #industries .section-head {
+    margin-bottom: 25px;
   }
 }
 
