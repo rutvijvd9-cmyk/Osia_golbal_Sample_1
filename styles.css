@@ -502,19 +502,23 @@
   flex-wrap: wrap !important;
 }
 
-/* Background Auto-Changing Slideshow */
+/* Hero section sizing for uncropped natural display */
+.hero {
+  min-height: 80vh;
+  max-height: 720px;
+}
+
+/* Background Auto-Changing Slideshow with Ambient Uncropped Display */
 .hero-slider, .contact-slider {
   position: absolute;
   inset: 0;
   overflow: hidden;
   z-index: 0;
+  background: #060e20;
 }
 .hero-slide {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
   opacity: 0;
   transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity;
@@ -523,6 +527,29 @@
   opacity: 1;
   z-index: 1;
 }
+
+/* Ambient matching backdrop prevents any black spaces */
+.slide-ambient {
+  position: absolute;
+  inset: -35px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: blur(35px) brightness(0.5);
+  transform: scale(1.15);
+  z-index: 1;
+}
+
+/* Main image stays 100% complete - NO cropping, NO stretching */
+.slide-img {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+
 .contact-slide {
   position: absolute;
   inset: 0;
@@ -584,10 +611,19 @@
     margin-bottom: 25px;
   }
   .hero {
-    min-height: 80vh;
+    min-height: 65vh;
+    max-height: 520px;
   }
   .hero-content {
-    padding: 115px 6vw 85px !important;
+    padding: 95px 6vw 55px !important;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 8.5vw, 44px) !important;
+    margin: 0 0 25px 0 !important;
+  }
+  .hero-actions {
+    margin-top: 10px !important;
+    gap: 10px !important;
   }
 }
 
