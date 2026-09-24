@@ -61,6 +61,9 @@ function closeNav(){
   document.body.classList.remove('nav-open');
   menu?.setAttribute('aria-expanded','false');
   if(menu) menu.textContent = '☰';
+  if(sidebarDrawer && sidebarDrawer.contains(document.activeElement)){
+    document.activeElement.blur();
+  }
   sidebarDrawer?.setAttribute('aria-hidden','true');
 }
 
