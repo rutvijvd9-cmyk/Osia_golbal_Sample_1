@@ -54,7 +54,6 @@ const menu=$('.menu-toggle'),
 function openNav(){
   document.body.classList.add('nav-open');
   menu?.setAttribute('aria-expanded','true');
-  if(menu) menu.textContent = '✕';
   sidebarDrawer?.setAttribute('aria-hidden','false');
 }
 
@@ -74,6 +73,14 @@ menu?.addEventListener('click',()=>{
 });
 sidebarClose?.addEventListener('click',closeNav);
 sidebarBackdrop?.addEventListener('click',closeNav);
+$('#siteWrapper')?.addEventListener('click', (e) => {
+  if (document.body.classList.contains('nav-open')) {
+    // Only close if click wasn't on the menu toggle itself
+    if (!e.target.closest('.menu-toggle')) {
+      closeNav();
+    }
+  }
+});
 function scrollToTarget(targetId){
   const el = document.getElementById(targetId);
   if(!el) return;
