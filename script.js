@@ -302,4 +302,3 @@ function initAutoSlider(slideSelector) {
   }, 2000);
 }
 initAutoSlider('.hero-slide');
-initAutoSlider('.contact-slide');
